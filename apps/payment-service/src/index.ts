@@ -2,8 +2,13 @@ import { serve } from '@hono/node-server'
 import { timeStamp } from 'console'
 import { Hono } from 'hono'
 import { uptime } from 'process'
+import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
+import { cors } from 'hono/cors';
 
-const app = new Hono()
+const app = new Hono();
+
+app.use("*", clerkMiddleware());
+app.use("*", cors({ origin: ["http://localhost:3002"] }));
 
 app.get('/health', (c) => {
   return c.json({
@@ -13,6 +18,25 @@ app.get('/health', (c) => {
     message: "Payment service is running"
   })
 })
+
+
+app.get('/test', (c) => {
+  const auth = getAuth(c);
+  if(!auth?.userId) {
+    return c.json({
+      message: "You are not logged in!"
+    })
+  }
+
+  return c.json({
+    message: "Payment service is authenticated!",
+    userId: auth.userId
+  })
+
+})
+
+
+
 
 
 const start = async () => {
