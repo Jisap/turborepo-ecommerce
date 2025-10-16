@@ -12,6 +12,7 @@
   "author": "Jisap",
   "license": "ISC",
   "dependencies": {
+    "@clerk/fastify": "^2.4.39",
     "@repo/typescript-config": "workspace:*",
     "fastify": "^5.6.1"
   },
