@@ -124,7 +124,7 @@ const CartPage = () => {
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
           {activeStep === 1 ? (
-            cart.map((item) => (
+            cart.map((item: any) => (
               // SINGLE CART ITEM
               <div
                 className="flex items-center justify-between"
@@ -186,7 +186,7 @@ const CartPage = () => {
               <p className="font-medium">
                 $
                 {cart
-                  .reduce((acc, item) => acc + item.price * item.quantity, 0)
+                  .reduce((acc: number, item: any) => acc + item.price * item.quantity, 0)
                   .toFixed(2)}
               </p>
             </div>
@@ -204,7 +204,7 @@ const CartPage = () => {
               <p className="font-medium">
                 $
                 {cart
-                  .reduce((acc, item) => acc + item.price * item.quantity, 0)
+                  .reduce((acc: number, item: any) => acc + item.price * item.quantity, 0)
                   .toFixed(2)}
               </p>
             </div>

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.19.5",
+    "@hono/clerk-auth": "^3.0.3",
     "hono": "^4.9.12"
   },
   "devDependencies": {
