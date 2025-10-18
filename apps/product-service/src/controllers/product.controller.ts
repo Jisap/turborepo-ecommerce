@@ -39,6 +39,11 @@ export const updateProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
   const data: Prisma.ProductUpdateInput = req.body;
 
+
+  if (!data || Object.keys(data).length === 0) {
+    return res.status(400).json({ error: "No data provided" });
+  }
+
   const updatedProduct = await prisma.product.update({
     where: { id: Number(id) },
     data,
