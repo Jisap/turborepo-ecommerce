@@ -60,7 +60,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
 };
 
 export const getProducts = async (req: Request, res: Response) => {
-  const { sort, category, search, limit } = req.query;
+  const { sort, category, search, limit } = req.query; // La función extrae cuatro posibles parámetros de la URL. 
 
   const orderBy = (() => {
     switch (sort) {
