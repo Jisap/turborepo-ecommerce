@@ -2,7 +2,7 @@
   "name": "product-service",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "pnpm dlx tsx --env-file=.env --watch src/index.ts",
     "check-types": "tsc --noEmit"
