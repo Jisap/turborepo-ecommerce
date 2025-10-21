@@ -262,6 +262,9 @@ importers:
       '@repo/product-db':
         specifier: workspace:*
         version: link:../../packages/product-db
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config

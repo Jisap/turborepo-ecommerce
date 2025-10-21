@@ -1,12 +1,6 @@
 import { getAuth } from "@clerk/express";
 import { Request, Response, NextFunction } from "express";
-// import { CustomJwtSessionClaims } from "@repo/types";
-
-export interface CustomJwtSessionClaims {
-  metadata?: {
-    role?: "user" | "admin";
-  };
-}
+import { CustomJwtSessionClaims } from "@repo/types";
 
 
 declare global {
