@@ -199,6 +199,9 @@ importers:
       '@clerk/fastify':
         specifier: ^2.4.39
         version: 2.4.39(fastify@5.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@repo/order-db':
+        specifier: workspace:*
+        version: link:../../packages/order-db
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
