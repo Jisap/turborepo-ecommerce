@@ -1,9 +1,9 @@
 "use client";
 
-import PaymentForm from "@/components/PaymentForm";
+
 import ShippingForm from "@/components/ShippingForm";
 import useCartStore from "@/stores/cartStore";
-import { CartItemsType, ShippingFormInputs } from "@/types";
+import { CartItemsType, ShippingFormInputs } from "@repo/types";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -89,6 +89,7 @@ const CartPage = () => {
   const activeStep = parseInt(searchParams.get("step") || "1");
 
   const { cart, removeFromCart } = useCartStore();
+
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* TITLE */}
@@ -170,7 +171,9 @@ const CartPage = () => {
           ) : activeStep === 2 ? (
             <ShippingForm setShippingForm={setShippingForm} />
           ) : activeStep === 3 && shippingForm ? (
-            <PaymentForm />
+            // <PaymentForm />
+            // TODO add payment form
+            <p>Payment Form</p>     
           ) : (
             <p className="text-sm text-gray-500">
               Please fill in the shipping form to continue.

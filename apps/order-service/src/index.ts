@@ -11,6 +11,8 @@ const fastify = Fastify();
 
 fastify.register(Clerk.clerkPlugin);
 
+fastify.register(orderRoute)
+
 fastify.get('/health', (request, reply) => {
   return reply.status(200).send({
     status: "ok",
@@ -27,7 +29,7 @@ fastify.get("/test", { preHandler: shouldBeUser }, (request, reply) => {
   });
 });
 
-fastify.register(orderRoute)
+
 
 const start = async () => {
   try {
