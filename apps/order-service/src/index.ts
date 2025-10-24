@@ -2,7 +2,7 @@ import Fastify from 'fastify';
 import Clerk from '@clerk/fastify'
 import { shouldBeUser } from './middleware/authMiddleware.js';
 import { connectOrderDB } from '@repo/order-db';
-import { orderRoute } from './routes/order.js';
+import { orderRoute } from './routes/session.js';
 
 
 

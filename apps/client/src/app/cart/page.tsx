@@ -2,6 +2,7 @@
 
 
 import ShippingForm from "@/components/ShippingForm";
+import StripePaymentForm from "@/components/StripePaymentForm";
 import useCartStore from "@/stores/cartStore";
 import { CartItemsType, ShippingFormInputs } from "@repo/types";
 import { ArrowRight, Trash2 } from "lucide-react";
@@ -94,6 +95,7 @@ const CartPage = () => {
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* TITLE */}
       <h1 className="text-2xl font-medium">Your Shopping Cart</h1>
+
       {/* STEPS */}
       <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         {steps.map((step) => (
@@ -120,6 +122,7 @@ const CartPage = () => {
           </div>
         ))}
       </div>
+
       {/* STEPS & DETAILS */}
       <div className="w-full flex flex-col lg:flex-row gap-16">
         {/* STEPS */}
@@ -168,18 +171,21 @@ const CartPage = () => {
                 </button>
               </div>
             ))
-          ) : activeStep === 2 ? (
-            <ShippingForm setShippingForm={setShippingForm} />
-          ) : activeStep === 3 && shippingForm ? (
-            // <PaymentForm />
-            // TODO add payment form
-            <p>Payment Form</p>     
-          ) : (
-            <p className="text-sm text-gray-500">
-              Please fill in the shipping form to continue.
-            </p>
-          )}
+          ) : activeStep === 2 
+              ? (
+                  // Validación de datos de envío del cliente -> redirección a "/cart?step=3".
+                  <ShippingForm setShippingForm={setShippingForm} />
+              ) : activeStep === 3 && shippingForm 
+                ? (
+                    // Renderiza el formulario de pago de stripe 
+                    <StripePaymentForm shippingForm={shippingForm} />
+                  ) : (
+                        <p className="text-sm text-gray-500">
+                          Please fill in the shipping form to continue.
+                        </p>
+                  )}
         </div>
+
         {/* DETAILS */}
         <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max">
           <h2 className="font-semibold">Cart Details</h2>
@@ -212,6 +218,7 @@ const CartPage = () => {
               </p>
             </div>
           </div>
+
           {activeStep === 1 && (
             <button
               onClick={() => router.push("/cart?step=2", { scroll: false })}

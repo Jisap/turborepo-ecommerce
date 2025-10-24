@@ -4,17 +4,16 @@ import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-const ShippingForm = ({
-  setShippingForm,
-}: {
-  setShippingForm: (data: ShippingFormInputs) => void;
-}) => {
+// Recopila los datos de envío del cliente (nombre, email, dirección, etc.).
+
+const ShippingForm = ({ setShippingForm }: {setShippingForm: (data: ShippingFormInputs) => void; }) => {
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ShippingFormInputs>({
-    resolver: zodResolver(shippingFormSchema as any),
+    resolver: zodResolver(shippingFormSchema as any), // Validación de datos de envío del cliente.
   });
 
   const router = useRouter();
@@ -27,7 +26,7 @@ const ShippingForm = ({
   return (
     <form
       className="flex flex-col gap-4"
-      onSubmit={handleSubmit(handleShippingForm)}
+      onSubmit={handleSubmit(handleShippingForm)} // Validación con handleSubmit -> establecimiento estado de ShippingForm -> redirección a "/cart?step=3".
     >
       <div className="flex flex-col gap-1">
         <label htmlFor="name" className="text-xs text-gray-500 font-medium">
