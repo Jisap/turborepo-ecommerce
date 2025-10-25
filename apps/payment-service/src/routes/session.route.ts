@@ -3,8 +3,8 @@ import { Hono } from "hono";
 import { shouldBeUser } from "../middleware/authMiddleware";
 import { CartItemsType } from "@repo/types";
 import { CartItemType } from "@repo/types";
-import { getStripeProductPrice } from "../../utils/stripeProduct";
-import stripe from "../../utils/stripe";
+import { getStripeProductPrice } from "../utils/stripeProduct";
+import stripe from "../utils/stripe";
 
 
 const sessionRoute = new Hono();

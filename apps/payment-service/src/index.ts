@@ -5,8 +5,9 @@ import { uptime } from 'process'
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { cors } from 'hono/cors';
 import { shouldBeUser } from './middleware/authMiddleware.js';
-import stripe from '../utils/stripe.js';
+import stripe from './utils/stripe.js';
 import sessionRoute from './routes/session.route.js';
+import webhookRoute from './routes/webhooks.route.js';
 
 const app = new Hono();
 
@@ -31,7 +32,8 @@ app.get('/test', shouldBeUser, (c) => {
 
 });
 
-app.route("/sessions", sessionRoute)
+app.route("/sessions", sessionRoute);
+app.route("/webhooks", webhookRoute);
 
 
 const start = async () => {
