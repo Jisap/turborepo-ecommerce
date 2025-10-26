@@ -32,9 +32,10 @@ export const createProduct = async (req: Request, res: Response) => {
     price: product.price,
   };
 
+  // product-service -> payment-service - order-service
   producer.send("product.created", { value: stripeProduct });                  // Enviamos el producto a Kafka para que se registre en Stripe (payment-service/src/utils/subscriptions)
-  res.status(201).json(product);
-};
+  res.status(201).json(product);                                               // Creado el producto en stripe esperamos a que se efectue el pago -> se emite entonces el topic ""payment.successful""
+};                                                                             // y el order-service con su kafka-suscriptions lo procesa y crea el order correspondiente
 
 export const updateProduct = async (req: Request, res: Response) => {
   const { id } = req.params;

@@ -34,16 +34,27 @@ fastify.get("/test", { preHandler: shouldBeUser }, (request, reply) => {
 
 const start = async () => {
   try {
-    Promise.all([
-      await connectOrderDB(),
-      await producer.connect(),
-      await consumer.connect(),
+    console.log("🚀 Starting Order Service...");
+    
+    console.log("📦 Connecting to Order DB...");
+    await connectOrderDB();
+    console.log("✅ Order DB connected");
+    
+    console.log("📦 Connecting to Kafka...");
+    await Promise.all([
+      producer.connect(),
+      consumer.connect(),
     ]);
-    //await runKafkaSubscriptions();
+    console.log("✅ Kafka connected");
+    
+    console.log("📡 Setting up Kafka subscriptions...");
+    await runKafkaSubscriptions();
+    
+    console.log("🌐 Starting Fastify server...");
     await fastify.listen({ port: 8001 });
-    console.log("Order service is running on port 8001");
+    console.log("✅ Order service is running on port 8001");
   } catch (err) {
-    console.log(err);
+    console.error("❌ Error starting service:", err);
     process.exit(1);
   }
 };
