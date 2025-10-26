@@ -15,7 +15,8 @@
     "@clerk/fastify": "^2.4.39",
     "@repo/order-db": "workspace:*",
     "date-fns": "^4.1.0",
-    "fastify": "^5.6.1"
+    "fastify": "^5.6.1",
+    "@repo/kafka": "workspace:*"
   },
   "devDependencies": {
     "@repo/types": "workspace:*",

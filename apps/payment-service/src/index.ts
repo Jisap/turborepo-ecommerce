@@ -8,6 +8,8 @@ import { shouldBeUser } from './middleware/authMiddleware.js';
 import stripe from './utils/stripe.js';
 import sessionRoute from './routes/session.route.js';
 import webhookRoute from './routes/webhooks.route.js';
+import { consumer, producer } from './utils/kafka.js';
+import { runKafkaSubscriptions } from './utils/subscriptions.js';
 
 const app = new Hono();
 
@@ -38,16 +40,20 @@ app.route("/webhooks", webhookRoute);
 
 const start = async () => {
   try {
-    serve({
-      fetch: app.fetch,
-      port: 8002
-    }, (info) => {
-      console.log(`Payment service is running on port:${info.port}`)
-    })
+    Promise.all([await producer.connect(), await consumer.connect()]);
+    await runKafkaSubscriptions()
+    serve(
+      {
+        fetch: app.fetch,
+        port: 8002,
+      },
+      (info) => {
+        console.log(`Payment service is running on port 8002`);
+      }
+    );
   } catch (error) {
     console.log(error);
     process.exit(1);
   }
-}
-
-start()
+};
+start();

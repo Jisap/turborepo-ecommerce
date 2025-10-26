@@ -13,13 +13,14 @@
   "dependencies": {
     "@clerk/express": "^1.7.39",
     "cors": "^2.8.5",
-    "express": "^5.0.3"
+    "express": "^5.0.3",
+    "@repo/kafka": "workspace:*",
+    "@repo/product-db": "workspace:*"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@repo/types": "workspace:*",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.3",
-    "@repo/product-db": "workspace:*"
+    "@types/express": "^5.0.3"
   }
 }
