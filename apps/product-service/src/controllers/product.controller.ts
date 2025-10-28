@@ -91,6 +91,7 @@ export const getProducts = async (req: Request, res: Response) => {
       category: {
         slug: category as string,
       },
+      categorySlug: category === "all" ? undefined : (category as string),
       name: {
         contains: search as string,
         mode: "insensitive",
