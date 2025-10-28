@@ -36,9 +36,10 @@ export const generateMetadata = async ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  const { id } = await params;
 
+  const { id } = await params;
   const product = await fetchProduct(id);
+
   return {
     title: product.name,
     describe: product.description,
@@ -52,6 +53,7 @@ const ProductPage = async ({
   params: Promise<{ id: string }>;
   searchParams: Promise<{ color: string; size: string }>;
 }) => {
+
   const { size, color } = await searchParams;
   const { id } = await params;
 
@@ -59,6 +61,7 @@ const ProductPage = async ({
 
   const selectedSize = size || (product.sizes[0] as string);
   const selectedColor = color || (product.colors[0] as string);
+
   return (
     <div className="flex flex-col gap-4 lg:flex-row md:gap-12 mt-12">
       {/* IMAGE */}
