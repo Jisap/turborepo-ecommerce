@@ -10,9 +10,9 @@ const SearchBar = () => {
   const router = useRouter();
 
   const handleSearch = (value: string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("search", value);
-    router.push(`/products?${params.toString()}`, { scroll: false });
+    const params = new URLSearchParams(searchParams);                 // Creamos un objeto de tipo URLSearchParams
+    params.set("search", value);                                      // Establecemos el valor del parámetro de búsqueda
+    router.push(`/products?${params.toString()}`, { scroll: false }); // Actualizamos la URL con el nuevo parámetro de búsqueda
   };
 
   return (
