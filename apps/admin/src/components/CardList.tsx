@@ -4,7 +4,6 @@ import { Badge } from "./ui/badge";
 import { OrderType, ProductsType } from "@repo/types";
 import { auth } from "@clerk/nextjs/server";
 
-// const popularProducts = [
 //   {
 //     id: 1,
 //     name: "Adidas CoreFit T-Shirt",
