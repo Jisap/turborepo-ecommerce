@@ -191,7 +191,10 @@ const AddProduct = () => {
                       <FormItem>
                         <FormLabel>Category</FormLabel>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value}>
+                          <Select 
+                            onValueChange={field.onChange} 
+                            value={field.value}
+                          >
                             <SelectTrigger>
                               <SelectValue placeholder="Select a category" />
                             </SelectTrigger>
@@ -338,7 +341,7 @@ const AddProduct = () => {
                                       formData.append("file", file);
                                       formData.append(
                                         "upload_preset",
-                                        "ecommerce"
+                                        "turborepo-ecom"
                                       );
 
                                       const res = await fetch(
@@ -365,7 +368,7 @@ const AddProduct = () => {
                                   }
                                 }}
                               />
-                              
+
                               {field.value?.[color] ? (
                                 <span className="text-green-600 text-sm">
                                   Image selected
